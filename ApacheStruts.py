@@ -8,6 +8,7 @@ Written by Nicolas BEGUIER (nicolas_beguier@hotmail.com)
 """
 
 # Standard library imports
+from argparse import ArgumentParser
 import urllib
 import time
 import os
@@ -27,6 +28,8 @@ OTRO = '\033[36m'
 YELLOW = '\033[33m'
 ENDC = '\033[0m'
 
+VERSION = '1.0.0'
+
 LOGO = BLUE+'''                                                             
   ___   _____  ___    _   _  _____  ___   
  (  _`\(_   _)|  _`\ ( ) ( )(_   _)(  _`\ 
@@ -41,16 +44,12 @@ LOGO = BLUE+'''
 
 def cls():
     os.system(['clear', 'cls'][os.name == 'nt'])
-cls()
 
-def main():
+def main(params):
     """
     Main function
     """
-    print(LOGO)
-    print(" * Example: http(s)://www.victima.com/files.login\n")
-    host = input(BOLD+" [+] HOST: "+ENDC)
-
+    host = params['url']
     if len(host) > 0:
         if host.find("https://") != -1 or host.find("http://") != -1:
 
@@ -215,4 +214,25 @@ def main():
         sys.exit(0)
 
 if __name__ == '__main__':
-    main()
+    PARSER = ArgumentParser()
+
+    PARSER.add_argument('--version', action='version', version=VERSION)
+    PARSER.add_argument('-u', '--url', action='store',\
+        help="URL to exploit")
+    PARSER.add_argument('--cls', action='store_true',\
+        help="clean shell before starting", default=False)
+    PARSER.add_argument('--no-header', action='store_true',\
+        help="hide logo header", default=False)
+    ARGS = PARSER.parse_args()
+
+    PARAMS = dict()
+    PARAMS['url'] = ARGS.url
+    if not ARGS.no_header:
+        print(LOGO)
+    if ARGS.cls:
+        cls()
+    if not ARGS.url:
+        print(" * Example: http(s)://www.victima.com/files.login\n")
+        PARAMS['url'] = input(BOLD+" [+] HOST: "+ENDC)
+
+    main(PARAMS)

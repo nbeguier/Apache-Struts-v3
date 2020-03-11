@@ -8,6 +8,21 @@ Script contains the fusion of 3 vulnerabilities of type RCE on ApacheStruts, als
 pip3 install -r requirements.txt
 ```
 
+## Usage
+
+```
+$ ./ApacheStruts.py --help
+usage: ApacheStruts.py [-h] [--version] [-u URL] [--cls] [--no-header]
+
+optional arguments:
+  -h, --help         show this help message and exit
+  --version          show program's version number and exit
+  -u URL, --url URL  URL to exploit
+  --cls              clean shell before starting
+  --no-header        hide logo header
+```
+
+
 ## SHELL
 **php** `Finished :)`
 **jsp** `In development.`
@@ -15,14 +30,14 @@ pip3 install -r requirements.txt
 ## CVE ADD
 **CVE-2013-2251**  `'action:', 'redirect:' and 'redirectAction'`
 ```bash
-docker run --rm --name struts2 -p 8080:8080 2d8ru/struts2
-# try: http://localhost:8080/S2-016/default.action
+docker run --rm -d --name struts2 -p 8080:8080 2d8ru/struts2
+./ApacheStruts.py --url http://localhost:8080/S2-016/default.action
 ```
 
 **CVE-2017-5638**  `Content-Type`
 ```bash
-docker run --rm --name struts2 -p 8080:8080 2d8ru/struts2
-# try: http://localhost:8080/S2-033/orders
+docker run --rm -d --name struts2 -p 8080:8080 2d8ru/struts2
+./ApacheStruts.py --url http://localhost:8080/S2-033/orders
 ```
 **CVE-2018-11776** `'redirect:' and 'redirectAction'`
 
