@@ -1,11 +1,16 @@
 # Apache-Struts-v3
 
-Script contiene la fusión de 3 vulnerabilidades de tipo RCE sobre ApacheStruts, además tiene la capacidad de crear shell servidor.
+Script contains the fusion of 3 vulnerabilities of type RCE on ApacheStruts, also has the ability to create server shell.
 
+## Prerequisites
+
+```
+pip3 install -r requirements.txt
+```
 
 ## SHELL
-**php** `Funcion Terminada :)`
-**jsp** `Funcion en desarrollo.`
+**php** `Finished :)`
+**jsp** `In development.`
 
 ## CVE ADD
 **CVE-2013-2251**  `'action:', 'redirect:' and 'redirectAction'`
@@ -28,7 +33,7 @@ docker run --rm --name struts2 -p 8080:8080 2d8ru/struts2
 
 
 ## Upload Shell
-Esta funcionalidad es efectiva cuando el servidor no tiene conexion a internet de tal manera que no podemos subir un archivo y la mejor opcion seria crear un archivo ya estando dentro.
+This functionality is effective when the server has no internet connection so that we can not upload a file and the best option would be to create a file already being inside.
 
 <p align="center">
   <img src="https://github.com/s1kr10s/Apache-Struts-v3/blob/master/shell.jpg" width="550" alt="accessibility text">
